@@ -93,21 +93,6 @@ threading.Thread(target=auto_kill_if_debug_detected, daemon=True).start()
 #thông báo block
 def banner_thong_bao():
     print(f"{lam}Thông Báo Bạn Ơi!")
-#block pc
-def check_device():
-    # Dùng uname nếu có
-    try:
-        if hasattr(os, 'uname'):
-            if "Android" in os.uname().sysname:
-                return  # OK, đang chạy trên Android
-    except:
-        pass
-
-    # Nếu không phải Android thì check hệ điều hành
-    if platform.system() in ["Windows", "Darwin"]:  # macOS, Windows
-        banner_thong_bao()
-        print(f"{hong}Vui lòng chạy trên {trang}điện thoại{hong}! Vì tool này không hỗ trợ cho phiên bản {trang}PC{hong}/{trang}LAPTOP\033[0m")
-        sys.exit(0)
 # Lấy chiều rộng terminal
 def get_terminal_width(min_width=50):
     width = shutil.get_terminal_size().columns
@@ -919,7 +904,6 @@ def run():
 def main():
     try:
         while True:
-            check_device()
             Server()
             banner()
             select_key()
