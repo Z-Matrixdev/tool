@@ -798,7 +798,10 @@ def run():
         # Bỏ qua job < 20đ
         price_after = nhanjob["data"].get("price_per_after_cost", 0)
         if boqua_job_duoi_20 and price_after < 20:
-            print(f"{lam}Bỏ qua job {hong}< {vang}20đ")
+            print(f"\r{lam}Bỏ qua job {hong}< {vang}20đ", end='', flush=True)
+            time.sleep(1.5)
+            print("\r" + " " * 50, end='', flush=True)  # Ghi đè bằng 50 khoảng trắng
+            print("\r", end='', flush=True)  # Trả con trỏ về đầu dòng
             baoloi(ads_id, object_id, account_id, job_type)
             time.sleep(1.5)
             continue
